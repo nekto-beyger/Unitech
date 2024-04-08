@@ -162,3 +162,5 @@ cython_debug/
 1/ 
 
 credentials.json
+
+.vscode/
