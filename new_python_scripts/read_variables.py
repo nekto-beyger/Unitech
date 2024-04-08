@@ -19,4 +19,4 @@ relevant_fields = data["RELEVANT_FIELDS"]
 
 gsheet_id = data["GSHEET_ID"]
 
-print(gsheet_id)
+# print(gsheet_id)

@@ -9,7 +9,7 @@ def get_multiple_konimbo_item_details(item_ids, token):
     attributes = [
         "id", "quantity", "cost", "price", "visible", "title", "desc", "discount_prices"
     ]
-    
+
     # Preparing the list to store product data
     items_data = []
     
