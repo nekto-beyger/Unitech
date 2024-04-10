@@ -1,0 +1,40 @@
+{
+    "LOG_SHEET": "Log",
+    "SUMMARY_SHEET": "KonimboSheet",
+    "YOUR_TOKEN": "8aab6d778cfc4e3450fc5c44e272790e81355d338ed55b7659d1a673d0ebe716",
+    "API_ENDPOINT": "https://api.konimbo.co.il/v1/items/",
+    "baseHeaderCount": 10,
+    "FIELD_MAP": {
+      "UID": "id",
+      "זמינות": "quantity",
+      "עלות": "cost",
+      "דילר 1": "field_18653",
+      "דילר 2": "field_18682",
+      "דילר 3": "field_19032",
+      "ס.לפני": "price",
+      "הצגה": "visible",
+      "תאור מקוצר": "title",
+      "תיאור": "desc"
+    },
+    "FILED_DATA_TYPES": {
+      "id": "Int32", 
+      "quantity": "Int8",
+      "cost": "object", 
+      "field_18653": "object",
+      "field_18682": "object",
+      "field_19032": "object",
+      "price": "object",
+      "visible": "bool",
+      "title": "object",
+      "desc": "object"
+    }, 
+    "RELEVANT_FIELDS": [
+      "id", "quantity", "cost", "field_18653",
+      "field_18682", "field_19032", "price", "visible",
+      "title",
+      "desc"
+    ],
+    "GSHEET_ID": "1ds3719GaUp7ee-dSKXD3Pf_bJdod0JkVP40fKGW71Jg",
+    "COLUMNS": ["B", "G", "H", "J", "P", "Q", "R", "T", "U"]
+  }
+  
