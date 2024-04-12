@@ -20,10 +20,12 @@ gsheet_df = pd.DataFrame(data)
 # print('=======================')
 # print(data_combined)
 # print('=======================')
-# print(data)
+
 # print('+++++++++++++++++++++')
 gsheet_df.columns = gsheet_df.iloc[0] 
 gsheet_df = gsheet_df[2:]
+
+# print(gsheet_df.info())
 gsheet_df = gsheet_df[list(field_map.keys())]
 gsheet_df.columns = list(field_map.values())
 
