@@ -6,4 +6,3 @@ load_dotenv()  # Загружает переменные окружения из
 
 path_to_cred = os.getenv('GOOGLE_CREDENTIALS_PATH')
 # print(path_to_cred)
-

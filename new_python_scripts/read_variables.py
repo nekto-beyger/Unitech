@@ -1,5 +1,5 @@
-import json 
-import os 
+import json
+import os
 import pandas as pd
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -20,14 +20,15 @@ with open(json_path, 'r') as file:
     data = json.load(file)
     field_data_types = {k: convert_dtype(v) for k, v in data["FILED_DATA_TYPES"].items()}
     field_data_types_web = {k: convert_dtype(v) for k, v in data["FILED_DATA_TYPES_WEB"].items()}
-    
-your_token = data["YOUR_TOKEN"]
 
-api_endpoint = data["API_ENDPOINT"]
+# your_token = data["YOUR_TOKEN"]
+
+# api_endpoint = data["API_ENDPOINT"]
 
 field_map_gsheet = data["FIELD_MAP_GSHEET"]
 
 field_map_website = data["FIELD_MAP_WEBSITE"]
+# print(field_map_website)
 
 relevant_fields = data["RELEVANT_FIELDS"]
 
@@ -35,3 +36,4 @@ gsheet_id = data["GSHEET_ID"]
 
 columns = data["COLUMNS"]
 
+meta_keys = data["META_KEYS"]

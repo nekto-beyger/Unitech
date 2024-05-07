@@ -6,8 +6,24 @@ from connection import gc
 from read_variables import gsheet_id, field_map_gsheet, field_data_types
 
 
-def visibility(df, col_name):
-    return pd.to_numeric(df[col_name], errors='coerce').gt(0)
+def clean_data(df):
+    """
+    Clean and preprocess data.
+    """
+    df.columns = list(field_map_gsheet.values())
+    # Process and clean price columns, removing currency symbols and commas, and convert to numeric
+    columns_to_correct = ['cost', 'price_1', 'price_2', 'price_3', 'price']
+    for col in columns_to_correct:
+        df[col] = df[col].str.replace('[₪,]', '', regex=True).str.strip()
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+    # Convert 'quantity' to boolean where true indicates visibility
+    df['visible'] = pd.to_numeric(df['quantity'], errors='coerce').gt(0)
+
+    # Trim leading and trailing spaces from the 'desc' column
+    df['desc'] = df['desc'].str.strip()
+
+    return df
 
 
 def get_data_from_gsheet():
@@ -17,41 +33,28 @@ def get_data_from_gsheet():
 
     all_data = pd.DataFrame()
 
+    # List of sheets to exclude from data extraction
     exclude_sheets = ['import', 'Log', 'KonimboSheet']
 
     for worksheet in worksheets:
         if worksheet.title not in exclude_sheets:
 
             data = worksheet.get_all_values()
-            
-            gsheet_df = pd.DataFrame(data)
-            
-            gsheet_df.columns = gsheet_df.iloc[0]
-            
-            gsheet_df = gsheet_df[2:]
-            gsheet_df.reset_index(drop=True, inplace=True)
-
-            gsheet_df = gsheet_df[list(field_map_gsheet.keys())]
-            gsheet_df.columns = list(field_map_gsheet.values())
-            
-            columns_to_correct = ['cost', 'price_1', 'price_2', 'price_3', 'price']
-            
-            for col in columns_to_correct:
-                gsheet_df[col] = gsheet_df[col].str.replace('[₪,]', '', regex=True).str.strip()
-                gsheet_df[col] = pd.to_numeric(gsheet_df[col], errors='coerce')
-            
-            
-            gsheet_df['visible'] = visibility(gsheet_df, "quantity")
-            # convert_to_boolean(gsheet_df, 'visible_')
-            gsheet_df['desc'] = gsheet_df["desc"].str.strip()
-            
-            
-            gsheet_df = gsheet_df.replace('', np.nan).infer_objects()  
-            gsheet_df = gsheet_df.astype(field_data_types)
-
+            # Initialize dataframe with the first row as headers and clean data
+            gsheet_df = pd.DataFrame(data, columns=data.pop(0))
+            print(gsheet_df[list(field_map_gsheet.keys())])
+            # Clean the data using the defined function
+            gsheet_df = clean_data(gsheet_df[list(field_map_gsheet.keys())])
+            # Assign meaningful column names based on mapping
+            # gsheet_df.columns = list(field_map_gsheet.values())
+            # Concatenate dataframes from all sheets into one
             all_data = pd.concat([all_data, gsheet_df], ignore_index=True)
 
-    # print(all_data.info())
+    # Replace empty strings with NaN and infer data types automatically
+    all_data = all_data.replace('', np.nan).infer_objects()
+    # Convert data types according to predefined schema
+    all_data = all_data.astype(field_data_types)
+
     return all_data
 
 

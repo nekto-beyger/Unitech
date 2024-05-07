@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "/Users/nikitabeyger/Documents/projects/unitech/venv/bin/python"
+    "python.pythonPath": "/Users/nikitabeyger/Documents/projects/unitech/venv/bin/python",
+    "editor.tokenColorCustomizations": {
+        "comments": "#25e200" // Укажите нужный цвет в HEX
+    }
+    
 }

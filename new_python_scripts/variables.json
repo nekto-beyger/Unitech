@@ -1,9 +1,4 @@
 {
-    "LOG_SHEET": "Log",
-    "SUMMARY_SHEET": "KonimboSheet",
-    "YOUR_TOKEN": "8aab6d778cfc4e3450fc5c44e272790e81355d338ed55b7659d1a673d0ebe716",
-    "API_ENDPOINT": "https://api.konimbo.co.il/v1/items/",
-    "baseHeaderCount": 10,
     "FIELD_MAP_GSHEET": {
       "UID": "id",
       "זמינות": "quantity",
@@ -20,9 +15,9 @@
       "id": "id",
       "sku": "sku",
       "stock_quantity": "quantity",
+      "manage_stock": "visible",
       "price": "price",
       "sale_price": "sale_price",
-      "catalog_visibility": "visible",
       "name": "title",
       "short_description": "desc",
       "cost": "cost",
@@ -64,6 +59,11 @@
       "desc"
     ],
     "GSHEET_ID": "1ds3719GaUp7ee-dSKXD3Pf_bJdod0JkVP40fKGW71Jg",
-    "COLUMNS": ["B", "G", "H", "J", "P", "Q", "R", "T", "U"]
+    "COLUMNS": ["B", "G", "H", "J", "P", "Q", "R", "T", "U"],
+    "META_KEYS": ["cost",
+    "b2bking_regular_product_price_group_2424",
+    "b2bking_regular_product_price_group_2425",
+    "b2bking_regular_product_price_group_2426",
+    "acf-field_65fc592a937b9"]
   }
   
